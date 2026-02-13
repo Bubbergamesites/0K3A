@@ -6,7 +6,9 @@ Welcome to 0K3A, my flagship gaming website.
 - Fast
 - many games
 - chatbot ai
-- Obamna SODAA!!!! 👍
+- it is ikea themed
+- movies (WIP)
+- proxy (WIP)
 
 ## Get your copy
 

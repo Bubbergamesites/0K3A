@@ -1,3 +1,9 @@
+# 0K3A has been Archived :(
+I WILL STILL MAINTAIN IT
+i just wont add anything.
+try going to my newer "replacement" Netlii 
+[https://github.com/chilicheesemonkey/netlii-games](url)
+
 # 0K3A
 
 Welcome to 0K3A, my flagship gaming website.

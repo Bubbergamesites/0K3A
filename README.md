@@ -5,8 +5,9 @@ try going to my newer "replacement" Netlii
 [https://github.com/chilicheesemonkey/netlii-games](url)
 
 # 0K3A
-<img width="1365" height="604" alt="Screenshot 2026-01-26 154837" src="https://github.com/user-attachments/assets/a65c7610-2bd2-4efa-a7eb-1193b8a97fef" />
+
 Welcome to 0K3A, my flagship gaming website.
+<img width="1365" height="604" alt="Screenshot 2026-01-26 154837" src="https://github.com/user-attachments/assets/2c5900d2-7540-4614-bb8c-757da2e67e1b" />
 
 ## Features
 - Fast

@@ -51,7 +51,7 @@ pageRefresh.onclick = () => {
 };
 
 newTabButton.onclick = () => {
-  addTab("duckduckgo.com");
+  addTab("https://html.duckduckgo.com/html");
 };
 
 // Options (opt menu)
@@ -248,7 +248,7 @@ async function addTab(link) {
   focusTab(tab);
 }
 
-addTab("duckduckgo.com");
+addTab("https://html.duckduckgo.com/html");
 
 const urlParams = new URLSearchParams(window.location.search);
 

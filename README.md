@@ -13,8 +13,8 @@ Welcome to 0K3A, my flagship gaming website.
 - many games
 - chatbot ai
 - it is ikea themed
-- movies (WIP)
-- proxy (WIP)
+- movies
+- proxy
 
 ## Get your copy
 

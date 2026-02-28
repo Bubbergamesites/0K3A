@@ -15,7 +15,7 @@ Welcome to 0K3A, my flagship gaming website.
 - chatbot ai
 - it is ikea themed
 - movies
-- proxy
+- STATIC proxy
 
 ## Get your copy
 

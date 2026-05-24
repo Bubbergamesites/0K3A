@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institutional Access Gateway</title>
+    <style>
+        /* Reset margins and paddings for a clean full-screen layout */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            max-width: 500px;
+            width: 90%;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .hidden { display: none; }
+        .status-icon { font-size: 48px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <div id="denied-screen" class="card">
+        <div class="status-icon">❌</div>
+        <h2 style="color: #d93025; margin-top: 0;">Access Denied</h2>
+    </div>
+
+    <script>
+        // Define the destination URL to load inside the full-screen frame
+        const portalUrl = "/*.htm"; 
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const deniedScreen = document.getElementById("denied-screen");
+
+            // 1. Basic OS check: Is it a ChromeOS device?
+            const isChromeOS = navigator.userAgent.includes("CrOS");
+
+            // 2. Enterprise check: Look for the managed extension variable
+            const isManagedDevice = window.hasOwnProperty('SchoolPolicyVerified') && window.SchoolPolicyVerified === true;
+
+            // Immediate evaluation on page load
+            if (isChromeOS && isManagedDevice) {
+                // Clear out the "Access Denied" card entirely from the body
+                document.body.innerHTML = "";
+                
+                // Programmatically construct a full-screen iframe
+                const iframe = document.createElement("iframe");
+                iframe.src = portalUrl;
+                iframe.style.width = "100%";
+                iframe.style.height = "100%";
+                iframe.style.border = "none";
+                iframe.style.display = "block";
+                
+                // Append the iframe directly to the main body element
+                document.body.appendChild(iframe);
+            } else {
+                // If validation fails, keep the denied screen visible
+                deniedScreen.classList.remove("hidden");
+            }
+        });
+    </script>
+
+</body>
+</html>

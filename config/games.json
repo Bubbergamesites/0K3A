@@ -706,6 +706,12 @@
     "imgSrc": "projects/rubikscube/rubiks.png",
     "title": "Rubiks Cube online"
   },
+{
+    "link": "projects/racemaster/",
+    "imgSrc": "projects/racemaster/logo.jpg",
+    "title": "Race master 3D"
+  },
+
  {
     "link": "projects/rallypoint5/",
     "imgSrc": "projects/rallypoint5/rp5.jpg",
@@ -736,6 +742,12 @@
     "imgSrc": "projects/sand-game/sand.png",
     "title": "Sand Game"
   },
+  {
+    "link": "projects/shellshockers/",
+    "imgSrc": "projects/shellshockers/shellshock.jpg",
+    "title": "ShellShockers"
+  },
+
   {
     "link": "projects/slope/",
     "imgSrc": "projects/slope/slope4.jpeg",

@@ -24,17 +24,6 @@
             --btn-text: #ffffff;
         }
 
-        [data-theme="dark"] {
-            --body-bg: #111111; 
-            --panel-bg: #1a1a1a;
-            --text-main: #ffffff;
-            --text-sub: #aaaaaa;
-            --input-bg: #2b2b2b;
-            --ikea-border: #333333;
-            --btn-bg: #ffda1a;
-            --btn-text: #111111;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -70,56 +59,7 @@
             letter-spacing: -1px;
             color: var(--ikea-yellow);
         }
-
-        [data-theme="dark"] .header-bar h1 {
-            color: #ffffff;
-        }
-
-        .theme-switch-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 44px;
-            height: 22px;
-        }
-
-        .switch input { opacity: 0; width: 0; height: 0; }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            inset: 0;
-            background-color: rgba(255, 255, 255, 0.2);
-            transition: .2s;
-            border-radius: 22px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        [data-theme="dark"] .slider {
-            background-color: var(--input-bg);
-            border-color: var(--ikea-border);
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 14px;
-            width: 14px;
-            left: 3px;
-            bottom: 3px;
-            background-color: #ffffff;
-            transition: .2s;
-            border-radius: 50%;
-        }
-
-        input:checked + .slider { background-color: var(--ikea-yellow); }
-        input:checked + .slider:before { transform: translateX(22px); background-color: var(--ikea-dark); }
-
+        
         .mode-label {
             font-size: 0.75rem;
             font-weight: 800;
@@ -145,8 +85,6 @@
             transition: background-color 0.3s, border-color 0.3s;
         }
 
-        [data-theme="dark"] .compartment { border-color: var(--ikea-border); }
-
         .compartment-title {
             font-size: 1.2rem;
             font-weight: 800;
@@ -158,8 +96,6 @@
             gap: 10px;
             color: var(--ikea-blue);
         }
-
-        [data-theme="dark"] .compartment-title { color: var(--ikea-yellow); }
 
         .compartment-desc {
             font-size: 0.85rem;
@@ -218,7 +154,6 @@
         }
 
         .btn:hover { background-color: var(--ikea-dark); color: #ffffff; }
-        [data-theme="dark"] .btn:hover { background-color: #ffffff; color: var(--ikea-dark); }
         
         .btn-secondary { background-color: #cc3333; color: white; }
         .btn-secondary:hover { background-color: #992222; color: white; }
@@ -233,13 +168,6 @@
 
     <div class="header-bar">
         <h1>Workshop Counter</h1>
-        <div class="theme-switch-wrapper">
-            <span class="mode-label">Dark Mode</span>
-            <label class="switch">
-                <input type="checkbox" id="theme-toggle">
-                <span class="slider"></span>
-            </label>
-        </div>
     </div>
 
     <div class="container">
@@ -293,18 +221,6 @@
     </div>
 
     <script>
-        // --- THEME SYNC ENGINE ---
-        const themeToggle = document.getElementById('theme-toggle');
-        themeToggle.onchange = () => {
-            const currentMode = themeToggle.checked ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', currentMode);
-            localStorage.setItem('misc_theme_state', currentMode);
-        };
-        if (localStorage.getItem('misc_theme_state') === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            themeToggle.checked = true;
-        }
-
         // --- SKETCHPAD MECHANICAL LOGIC ---
         const canvas = document.getElementById('blueprintCanvas');
         const ctx = canvas.getContext('2d');

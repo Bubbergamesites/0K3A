@@ -43,24 +43,26 @@
     </div>
 
     <script>
-        // Define the destination URL to load inside the full-screen frame
+        // CHANGE THIS: Set this to the actual URL of your game or destination page
         const portalUrl = "/*.htm"; 
 
         document.addEventListener("DOMContentLoaded", function() {
             const deniedScreen = document.getElementById("denied-screen");
 
-            // 1. Basic OS check: Is it a ChromeOS device?
+            // 1. Verify Platform: Must be a ChromeOS device (Chromebook)
             const isChromeOS = navigator.userAgent.includes("CrOS");
 
-            // 2. Enterprise check: Look for the managed extension variable
-            const isManagedDevice = window.hasOwnProperty('SchoolPolicyVerified') && window.SchoolPolicyVerified === true;
+            // 2. Verify Management Status: Checks if the browser is running under enterprise/school policies
+            // It looks for native enterprise object tags or our custom institutional injection variable
+            const isManagedDevice = (navigator.managed !== undefined) || 
+                                    (window.hasOwnProperty('SchoolPolicyVerified') && window.SchoolPolicyVerified === true);
 
-            // Immediate evaluation on page load
+            // Immediate evaluation
             if (isChromeOS && isManagedDevice) {
-                // Clear out the "Access Denied" card entirely from the body
+                // Clear out the Access Denied screen completely
                 document.body.innerHTML = "";
                 
-                // Programmatically construct a full-screen iframe
+                // Build the full-screen iframe container seamlessly
                 const iframe = document.createElement("iframe");
                 iframe.src = portalUrl;
                 iframe.style.width = "100%";
@@ -68,10 +70,10 @@
                 iframe.style.border = "none";
                 iframe.style.display = "block";
                 
-                // Append the iframe directly to the main body element
+                // Mount the iframe directly to the screen
                 document.body.appendChild(iframe);
             } else {
-                // If validation fails, keep the denied screen visible
+                // Keep the block screen active if conditions are unfulfilled
                 deniedScreen.classList.remove("hidden");
             }
         });

@@ -1,231 +1,516 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>Miscellaneous | 0K3A</title>
     <style>
-      :root {
-        --ikea-blue: #0051ba;
-        --ikea-yellow: #ffda1a;
-        --ikea-dark: #111111;
-        --ikea-gray: #f5f5f5;
-        --ikea-border: #dfdfdf;
-      }
+        :root {
+            --ikea-blue: #0051ba;
+            --ikea-yellow: #ffda1a;
+            --ikea-dark: #111111;
+            --ikea-gray: #f5f5f5;
+            --ikea-border: #dfdfdf;
 
-      body {
-        background-color: var(--ikea-blue);
-        color: #ffffff;
-        font-family: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        margin: 0;
-        padding: 40px 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-        box-sizing: border-box;
-      }
+            --body-bg: #0051ba; 
+            --panel-bg: #ffffff;
+            --text-main: #111111;
+            --text-sub: #555555;
+            --input-bg: #f5f5f5;
+            --btn-bg: #0051ba;
+            --btn-text: #ffffff;
+        }
 
-      .container {
-        width: 100%;
-        max-width: 650px;
-      }
+        [data-theme="dark"] {
+            --body-bg: #111111; 
+            --panel-bg: #1a1a1a;
+            --text-main: #ffffff;
+            --text-sub: #aaaaaa;
+            --input-bg: #2b2b2b;
+            --ikea-border: #333333;
+            --btn-bg: #ffda1a;
+            --btn-text: #111111;
+        }
 
-      /* Clean, bold IKEA header style */
-      h2.page-title {
-        text-align: center;
-        font-size: 2.5rem;
-        font-weight: 900;
-        letter-spacing: -1px;
-        margin-bottom: 2rem;
-        color: var(--ikea-yellow);
-        text-transform: uppercase;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      /* Modular "Furniture Box" Cards */
-      .ikea-card {
-        background-color: #ffffff;
-        color: var(--ikea-dark);
-        padding: 30px;
-        margin-bottom: 25px;
-        border-radius: 6px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      }
+        body {
+            font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--body-bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-      .ikea-card h1 {
-        font-size: 1.5rem;
-        font-weight: 800;
-        margin-top: 0;
-        margin-bottom: 15px;
-        border-bottom: 2px solid var(--ikea-gray);
-        padding-bottom: 8px;
-        text-transform: uppercase;
-        letter-spacing: -0.5px;
-      }
+        .header-bar {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
 
-      .ikea-card p {
-        font-size: 0.95rem;
-        line-height: 1.5;
-        color: #444444;
-        margin-bottom: 15px;
-      }
+        .header-bar h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: var(--ikea-yellow);
+        }
 
-      .note {
-        font-size: 0.85rem !important;
-        color: #666666 !important;
-        font-style: italic;
-      }
+        [data-theme="dark"] .header-bar h1 {
+            color: #ffffff;
+        }
 
-      /* Form Elements */
-      input[type="url"] {
-        width: 100%;
-        padding: 12px 15px;
-        border: 1px solid var(--ikea-border);
-        border-radius: 4px;
-        background-color: var(--ikea-gray);
-        color: var(--ikea-dark);
-        font-size: 1rem;
-        box-sizing: border-box;
-        transition: border-color 0.2s;
-      }
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-      input[type="url"]:focus {
-        border-color: var(--ikea-blue);
-        outline: none;
-        background-color: #ffffff;
-      }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 22px;
+        }
 
-      /* Ad Consent Checkbox Row */
-      .checkbox-row {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-top: 15px;
-        cursor: pointer;
-        font-weight: 600;
-      }
+        .switch input { opacity: 0; width: 0; height: 0; }
 
-      input[type="checkbox"] {
-        width: 20px;
-        height: 20px;
-        cursor: pointer;
-        accent-color: var(--ikea-blue);
-      }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: .2s;
+            border-radius: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
 
-      /* Action Buttons */
-      .button-group {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 20px;
-      }
+        [data-theme="dark"] .slider {
+            background-color: var(--input-bg);
+            border-color: var(--ikea-border);
+        }
 
-      .ikea-btn {
-        flex: 1;
-        min-width: 120px;
-        cursor: pointer;
-        background-color: var(--ikea-blue);
-        border: none;
-        color: #ffffff;
-        padding: 12px 24px;
-        text-align: center;
-        text-decoration: none;
-        font-size: 0.95rem;
-        font-weight: 700;
-        border-radius: 4px;
-        transition: background-color 0.15s ease, transform 0.1s ease;
-      }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: #ffffff;
+            transition: .2s;
+            border-radius: 50%;
+        }
 
-      .ikea-btn:hover {
-        background-color: var(--ikea-dark);
-        color: #ffffff;
-      }
+        input:checked + .slider { background-color: var(--ikea-yellow); }
+        input:checked + .slider:before { transform: translateX(22px); background-color: var(--ikea-dark); }
 
-      .ikea-btn.danger {
-        background-color: #d9381e;
-      }
+        .mode-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+        }
 
-      .ikea-btn.danger:hover {
-        background-color: #b5260f;
-      }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
 
-      /* Back to Home Button Style */
-      .home-btn-container {
-        text-align: center;
-        margin-top: 3rem;
-      }
+        .compartment {
+            background-color: var(--panel-bg);
+            border: 4px solid var(--ikea-yellow);
+            border-radius: 6px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
 
-      .home-btn {
-        display: inline-block;
-        cursor: pointer;
-        background-color: var(--ikea-yellow);
-        border: none;
-        color: var(--ikea-dark);
-        padding: 15px 35px;
-        font-size: 1rem;
-        font-weight: 700;
-        text-decoration: none;
-        border-radius: 6px;
-        transition: background-color 0.15s, transform 0.1s;
-      }
+        [data-theme="dark"] .compartment { border-color: var(--ikea-border); }
 
-      .home-btn:hover {
-        background-color: #ffffff;
-        color: var(--ikea-blue);
-        transform: scale(1.03);
-      }
+        .compartment-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--ikea-blue);
+        }
+
+        [data-theme="dark"] .compartment-title { color: var(--ikea-yellow); }
+
+        .compartment-desc {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .canvas-container {
+            background: #ffffff;
+            border: 2px dashed var(--ikea-blue);
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            background-image: linear-gradient(#e0ecfc 1px, transparent 1px), linear-gradient(90deg, #e0ecfc 1px, transparent 1px);
+            background-size: 20px 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        canvas {
+            background: transparent;
+            display: block;
+        }
+
+        .game-hud {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--ikea-dark);
+            color: #ffffff;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+            border-left: 5px solid var(--ikea-yellow);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: background-color 0.15s, transform 0.1s;
+        }
+
+        .btn:hover { background-color: var(--ikea-dark); color: #ffffff; }
+        [data-theme="dark"] .btn:hover { background-color: #ffffff; color: var(--ikea-dark); }
+        
+        .btn-secondary { background-color: #cc3333; color: white; }
+        .btn-secondary:hover { background-color: #992222; color: white; }
+
+        .flex-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+        .footer-nav { text-align: center; margin-top: 15px; }
+        .home-btn { background-color: var(--ikea-yellow); color: var(--ikea-dark); }
+        .home-btn:hover { background-color: #ffffff; color: var(--ikea-blue); }
     </style>
-  </head>
-  <body>
-    <div class="container">
-      <h2 class="page-title">Miscellaneous stuff</h2>
+</head>
+<body>
 
-      <div class="ikea-card">
-        <h1>about:blank</h1>
-        <p>Enter a URL you want to be opened in an about:blank page below:</p>
-        <p>
-          <input id="url-target" type="url" pattern="https://.*" placeholder="Enter a website URL (e.g., https://...)" autocomplete="on" />
-        </p>
-        <p class="note">Note: This will not work with some websites, but you can copy the link of this website and put it in for extra privacy.</p>
-        
-        <div class="button-group">
-          <button id="create" class="ikea-btn">Create page</button>
+    <div class="header-bar">
+        <h1>Workshop Counter</h1>
+        <div class="theme-switch-wrapper">
+            <span class="mode-label">Dark Mode</span>
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider"></span>
+            </label>
         </div>
-      </div>
-
-      <div class="ikea-card">
-        <h1>Tab Cloaker</h1>
-        <p>Enter a new tab title or an image URL below. What you set will be used across the entire site.</p>
-        <p>
-          <input id="userinput" type="url" placeholder="Enter a title or image URL" autocomplete="on" />
-        </p>
-        <p id="console-output"></p>
-        
-        <div class="button-group">
-          <button onclick="changeTabTitle();" class="ikea-btn">Set Title</button>
-          <button onclick="changeTabIcon();" class="ikea-btn">Set Icon</button>
-          <button onclick="resetTabSettings();" class="ikea-btn danger">Reset</button>
-        </div>
-      </div>
-
-      <div class="ikea-card">
-        <h1>Ads consent</h1>
-        <p>Sometimes, ads are shown to support the creator. If you would prefer not to see ads or if they slow down your computer, you can disable them here.</p>
-        
-        <label class="checkbox-row" for="adConsent">
-          <input type="checkbox" id="adConsent" name="adConsent">
-          Do not show ads at all
-        </label>
-      </div>
-
-      <div class="home-btn-container">
-        <a href="/index.html" style="text-decoration: none;">
-          <button class="home-btn">Go to the homepage</button>
-        </a>
-      </div>
     </div>
 
-    <script src="/js/misc.js"></script>
-    <script src="/js/main.js"></script>
-  </body>
+    <div class="container">
+        
+        <div class="compartment">
+            <div class="compartment-title">
+                <i class="fa-solid fa-compass-drafting"></i> Blueprint Sketch Pad
+            </div>
+            <p class="compartment-desc">
+                Draft up fast structural assembly models or quick room layout map notes right inside this integrated blueprint grid canvas.
+            </p>
+            <div class="canvas-container">
+                <canvas id="blueprintCanvas" width="500" height="240"></canvas>
+            </div>
+            <div class="flex-buttons">
+                <button class="btn" onclick="setToolColor('#0051ba')">Blue Pencil</button>
+                <button class="btn" onclick="setToolColor('#ffda1a')">Yellow Pencil</button>
+                <button class="btn" onclick="setToolColor('#111111')">Dark Charcoal</button>
+                <button class="btn btn-secondary" onclick="clearCanvas()">Clear Pad</button>
+            </div>
+        </div>
+
+        <div class="compartment">
+            <div class="compartment-title">
+                <i class="fa-solid fa-gamepad"></i> Flat-Pack Stacker Arcade
+            </div>
+            <p class="compartment-desc">
+                Timing is key! Click inside the frame arena or press <b>SPACEBAR</b> / <b>ENTER</b> to drop the moving flat-pack cargo box. Build a stable tower!
+            </p>
+            
+            <div class="game-hud">
+                <span id="scoreDisplay">Score: 0</span>
+                <span id="strikeDisplay">Strikes: ❤️❤️❤️</span>
+            </div>
+
+            <div class="canvas-container" style="background-image: none; background: #222; border-color: var(--ikea-yellow);">
+                <canvas id="gameCanvas" width="500" height="320" style="cursor: pointer;"></canvas>
+            </div>
+            
+            <div class="flex-buttons">
+                <button class="btn" onclick="dropBox()">Drop Box (Space)</button>
+                <button class="btn btn-secondary" onclick="resetGame()">Restart Manifest</button>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <a href="/index.html" style="text-decoration: none;">
+                <button class="btn home-btn"><i class="fa-solid fa-house"></i> Return to Main Showroom</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // --- THEME SYNC ENGINE ---
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.onchange = () => {
+            const currentMode = themeToggle.checked ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', currentMode);
+            localStorage.setItem('misc_theme_state', currentMode);
+        };
+        if (localStorage.getItem('misc_theme_state') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.checked = true;
+        }
+
+        // --- SKETCHPAD MECHANICAL LOGIC ---
+        const canvas = document.getElementById('blueprintCanvas');
+        const ctx = canvas.getContext('2d');
+        let painting = false;
+        let penColor = '#0051ba';
+
+        function startPosition(e) { painting = true; draw(e); }
+        function finishedPosition() { painting = false; ctx.beginPath(); }
+        
+        function draw(e) {
+            if (!painting) return;
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = penColor;
+            const rect = canvas.getBoundingClientRect();
+            ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+        }
+
+        canvas.addEventListener('mousedown', startPosition);
+        canvas.addEventListener('mouseup', finishedPosition);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseleave', finishedPosition);
+
+        function setToolColor(color) { penColor = color; }
+        function clearCanvas() { ctx.clearRect(0, 0, canvas.width, canvas.height); }
+
+
+        // --- FLAT-PACK STACKER INTERACTIVE GAME LOGIC ---
+        const gCanvas = document.getElementById('gameCanvas');
+        const gCtx = gCanvas.getContext('2d');
+        
+        let score = 0;
+        let strikes = 0;
+        const maxStrikes = 3;
+        let gameOver = false;
+
+        const basePlatform = { x: 200, y: 300, w: 100, h: 20 };
+        let settledBoxes = []; 
+        let activeBox = null;
+        
+        let crane = {
+            x: 0,
+            y: 30,
+            w: 45,
+            h: 30,
+            speed: 3,
+            direction: 1
+        };
+
+        function spawnNextBox() {
+            if (gameOver) return;
+            crane.speed = 3 + (score * 0.4);
+            activeBox = {
+                x: crane.x + (crane.w / 2) - 20,
+                y: crane.y + crane.h,
+                w: 40,
+                h: 25,
+                isDropped: false,
+                vy: 0,
+                color: Math.random() > 0.5 ? '#0051ba' : '#ffda1a'
+            };
+        }
+
+        function dropBox() {
+            if (gameOver) {
+                resetGame();
+                return;
+            }
+            if (activeBox && !activeBox.isDropped) {
+                activeBox.isDropped = true;
+            }
+        }
+
+        function resetGame() {
+            score = 0;
+            strikes = 0;
+            gameOver = false;
+            settledBoxes = [];
+            basePlatform.y = 300; 
+            document.getElementById('scoreDisplay').textContent = "Score: 0";
+            document.getElementById('strikeDisplay').textContent = "Strikes: ❤️❤️❤️";
+            spawnNextBox();
+        }
+
+        // FIX: Broad Key Listener targeting both input states and preventing scrolling actions
+        window.addEventListener('keydown', (e) => {
+            if (e.code === "Space" || e.key === " " || e.key === "Enter") {
+                e.preventDefault(); // Stop default scroll/action immediately
+                dropBox();
+            }
+        });
+        
+        gCanvas.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            dropBox();
+        });
+
+        function gameEngineLoop() {
+            gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+
+            // Draw Base Platform
+            gCtx.fillStyle = '#444';
+            gCtx.fillRect(basePlatform.x, basePlatform.y, basePlatform.w, basePlatform.h);
+            gCtx.strokeStyle = '#fff';
+            gCtx.strokeRect(basePlatform.x, basePlatform.y, basePlatform.w, basePlatform.h);
+
+            // 1. Process Crane Movement
+            if (!gameOver) {
+                crane.x += crane.speed * crane.direction;
+                if (crane.x <= 0 || crane.x + crane.w >= gCanvas.width) {
+                    crane.direction *= -1; 
+                }
+            }
+
+            // Draw Crane
+            gCtx.fillStyle = '#666';
+            gCtx.fillRect(crane.x, crane.y, crane.w, crane.h);
+            gCtx.fillStyle = '#ffda1a';
+            gCtx.fillRect(crane.x + (crane.w/2) - 3, 0, 6, crane.y); 
+
+            // 2. Process Active Dropped Package
+            if (activeBox && !gameOver) {
+                if (!activeBox.isDropped) {
+                    activeBox.x = crane.x + (crane.w / 2) - (activeBox.w / 2);
+                } else {
+                    activeBox.vy += 0.4; 
+                    activeBox.y += activeBox.vy;
+
+                    let targetLayerY = basePlatform.y;
+                    let targetSurfaceLeft = basePlatform.x;
+                    let targetSurfaceRight = basePlatform.x + basePlatform.w;
+
+                    if (settledBoxes.length > 0) {
+                        let topBox = settledBoxes[settledBoxes.length - 1];
+                        targetLayerY = topBox.y;
+                        targetSurfaceLeft = topBox.x;
+                        targetSurfaceRight = topBox.x + topBox.w;
+                    }
+
+                    if (activeBox.y + activeBox.h >= targetLayerY) {
+                        if (activeBox.x + activeBox.w > targetSurfaceLeft && activeBox.x < targetSurfaceRight) {
+                            activeBox.y = targetLayerY - activeBox.h;
+                            settledBoxes.push(activeBox);
+                            score++;
+                            document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
+                            
+                            if (settledBoxes.length > 5) {
+                                settledBoxes.forEach(b => b.y += 25);
+                                basePlatform.y += 25;
+                            }
+                            
+                            spawnNextBox();
+                        } else {
+                            strikes++;
+                            let heartIcons = "❤️".repeat(Math.max(0, maxStrikes - strikes)) + "💔".repeat(Math.min(maxStrikes, strikes));
+                            document.getElementById('strikeDisplay').textContent = `Strikes: ${heartIcons}`;
+                            
+                            if (strikes >= maxStrikes) {
+                                gameOver = true;
+                                activeBox = null; // Prevent collision loops
+                            } else {
+                                spawnNextBox();
+                            }
+                        }
+                    }
+                }
+
+                if (activeBox) {
+                    gCtx.fillStyle = activeBox.color;
+                    gCtx.fillRect(activeBox.x, activeBox.y, activeBox.w, activeBox.h);
+                    gCtx.strokeStyle = '#ffffff';
+                    gCtx.strokeRect(activeBox.x, activeBox.y, activeBox.w, activeBox.h);
+                }
+            }
+
+            // 3. Render Settled Boxes
+            settledBoxes.forEach(b => {
+                gCtx.fillStyle = b.color;
+                gCtx.fillRect(b.x, b.y, b.w, b.h);
+                gCtx.strokeStyle = '#ffffff';
+                gCtx.strokeRect(b.x, b.y, b.w, b.h);
+            });
+
+            // 4. Render Game Over State Overlay
+            if (gameOver) {
+                gCtx.fillStyle = 'rgba(17,17,17,0.9)';
+                gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height);
+                gCtx.fillStyle = '#ffda1a';
+                gCtx.font = 'bold 24px "Noto Sans"';
+                gCtx.textAlign = 'center';
+                gCtx.fillText("CARGO MANIFEST CRASHED", gCanvas.width / 2, gCanvas.height / 2 - 10);
+                gCtx.fillStyle = '#ffffff';
+                gCtx.font = '14px monospace';
+                gCtx.fillText("Click Canvas, Space, or Enter to Restart", gCanvas.width / 2, gCanvas.height / 2 + 25);
+            }
+
+            requestAnimationFrame(gameEngineLoop);
+        }
+
+        // Force document window focus on launch to instantly grab keys
+        window.focus();
+        spawnNextBox();
+        gameEngineLoop();
+    </script>
+</body>
 </html>

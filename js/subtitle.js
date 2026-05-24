@@ -24,7 +24,7 @@ function getRandomGreeting() {
     "Powered by hamsters!",
     "*insert cool explosion*",
     "Gotta go fast!",
-    "My iPad passcode is 93353 btw",
+    "we do have shellshockers",
     "james the popsicle?!",
     "Sponsored by RAID SHADOW LEGENDS",
     "Sponsored by Chimp & co!",

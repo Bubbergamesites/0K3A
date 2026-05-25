@@ -29,21 +29,7 @@
             --border-accent: #0051ba;
         }
 
-        [data-theme="dark"] {
-            --text-color: #ffffff;
-            --container-bg: #111111;
-            /* Showroom Dark Core */
-            --body-bg: #002d66;
-            /* Deep Dark Navy */
-            --sidebar-bg: #1a1a1a;
-            --ikea-border: #333333;
-            --msg-ai-bg: #2a2a2a;
-            --msg-ai-text: #ffffff;
-            --msg-user-bg: #ffda1a;
-            /* High-Visibility Yellow user bubbles */
-            --msg-user-text: #111111;
-            --border-accent: #ffda1a;
-        }
+       
 
         * {
             margin: 0;
@@ -76,11 +62,6 @@
             border: 4px solid var(--ikea-yellow);
             /* Bold Framing Border */
         }
-
-        [data-theme="dark"] .wrapper {
-            border-color: #1a1a1a;
-        }
-
         /* Sidebar Menu Layout - "Product Catalog History" */
         .sidebar {
             width: 280px;
@@ -92,11 +73,6 @@
             flex-shrink: 0;
             transition: background-color 0.3s, border-color 0.3s;
         }
-
-        [data-theme="dark"] .sidebar {
-            border-right-color: var(--ikea-border);
-        }
-
         .sidebar-header {
             display: flex;
             align-items: center;
@@ -111,11 +87,6 @@
             letter-spacing: 0.8px;
             color: var(--ikea-blue);
         }
-
-        [data-theme="dark"] .sidebar-title {
-            color: var(--ikea-yellow);
-        }
-
         /* Rounded elements flattened into structural block buttons */
         .action-btn {
             background: var(--ikea-blue);
@@ -137,12 +108,6 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             transition: background-color 0.15s, color 0.15s;
         }
-
-        [data-theme="dark"] .action-btn {
-            background: var(--ikea-yellow);
-            color: var(--ikea-dark);
-        }
-
         .action-btn:hover {
             background: var(--ikea-dark);
             color: #ffffff;
@@ -169,102 +134,18 @@
             text-overflow: ellipsis;
             transition: background-color 0.15s, border-color 0.15s, color 0.15s;
         }
-
-        [data-theme="dark"] .history-item {
-            background: #2a2a2a;
-            color: #ffffff;
-            border-color: transparent;
-        }
-
         .history-item:hover {
             background: var(--ikea-blue);
             color: #ffffff;
             border-color: var(--ikea-blue);
         }
-
-        [data-theme="dark"] .history-item:hover {
-            background: var(--ikea-yellow);
-            color: var(--ikea-dark);
-        }
-
-        /* Theme Selector Bar */
+  /* Theme Selector Bar */
         .bottom-controls {
             border-top: 2px solid rgba(0, 81, 186, 0.15);
             padding-top: 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-        }
-
-        [data-theme="dark"] .bottom-controls {
-            border-top-color: var(--ikea-border);
-        }
-
-        .theme-label {
-            font-size: 0.75rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--ikea-blue);
-        }
-
-        [data-theme="dark"] .theme-label {
-            color: #ffffff;
-        }
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 44px;
-            height: 22px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.15);
-            transition: .2s;
-            border-radius: 22px;
-        }
-
-        [data-theme="dark"] .slider {
-            background-color: var(--ikea-border);
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 3px;
-            bottom: 3px;
-            background-color: #ffffff;
-            transition: .2s;
-            border-radius: 50%;
-        }
-
-        input:checked+.slider {
-            background-color: var(--ikea-blue);
-        }
-
-        [data-theme="dark"] input:checked+.slider {
-            background-color: var(--ikea-yellow);
-        }
-
-        input:checked+.slider:before {
-            transform: translateX(22px);
-            background-color: var(--ikea-yellow);
-        }
-
-        [data-theme="dark"] input:checked+.slider:before {
-            background-color: var(--ikea-dark);
         }
 
         /* Chat Window / Conversation Workspace */
@@ -284,11 +165,6 @@
             background: #ffffff;
         }
 
-        [data-theme="dark"] .chat-header {
-            background: #111111;
-            border-bottom-color: var(--ikea-border);
-        }
-
         .chat-header h2 {
             font-size: 1.3rem;
             font-weight: 900;
@@ -297,11 +173,7 @@
             color: var(--ikea-blue);
         }
 
-        [data-theme="dark"] .chat-header h2 {
-            color: #ffffff;
-        }
-
-        .home-link {
+         .home-link {
             font-size: 0.85rem;
             font-weight: 800;
             color: var(--ikea-blue);
@@ -313,21 +185,11 @@
             transition: background-color 0.15s, color 0.15s;
         }
 
-        [data-theme="dark"] .home-link {
-            color: var(--ikea-yellow);
-            border-color: var(--ikea-yellow);
-        }
-
         .home-link:hover {
             background-color: var(--ikea-blue);
             color: #ffffff;
         }
-
-        [data-theme="dark"] .home-link:hover {
-            background-color: var(--ikea-yellow);
-            color: var(--ikea-dark);
-        }
-
+        
         /* Message Stage Content Container */
         .stage {
             flex: 1;
@@ -358,10 +220,6 @@
             font-weight: 500;
         }
 
-        [data-theme="dark"] .ai-msg {
-            border-left-color: var(--ikea-yellow);
-        }
-
         /* User Message layout */
         .user-msg {
             background-color: var(--msg-user-bg);
@@ -378,12 +236,6 @@
             gap: 12px;
             background: #ffffff;
         }
-
-        [data-theme="dark"] .input-area {
-            background: #111111;
-            border-top-color: var(--ikea-border);
-        }
-
         .input-area input {
             flex: 1;
             padding: 14px 18px;
@@ -416,19 +268,9 @@
             transition: background-color 0.15s, color 0.15s;
         }
 
-        [data-theme="dark"] .send-btn {
-            background: var(--ikea-yellow);
-            color: var(--ikea-dark);
-        }
-
         .send-btn:hover {
             background: var(--ikea-dark);
             color: #ffffff;
-        }
-
-        [data-theme="dark"] .send-btn:hover {
-            background: #ffffff;
-            color: var(--ikea-dark);
         }
 
         /* System Clear Option */
@@ -444,10 +286,6 @@
             text-align: left;
             padding: 6px;
             width: max-content;
-        }
-
-        [data-theme="dark"] .clear-btn {
-            color: #ff6666;
         }
 
         .clear-btn:hover {
@@ -491,13 +329,7 @@
                 <i class="ri-delete-bin-line"></i> Clear All History
             </button>
 
-            <div class="bottom-controls">
-                <span class="theme-label">Dark Mode</span>
-                <label class="switch">
-                    <input type="checkbox" id="theme-toggle">
-                    <span class="slider"></span>
-                </label>
-            </div>
+            
         </div>
 
         <div class="main-chat">
@@ -641,19 +473,6 @@
         userInput.onkeypress = (e) => {
             if (e.key === 'Enter') send();
         };
-
-        // Theme Switch Component
-        const toggle = document.getElementById('theme-toggle');
-        toggle.onchange = () => {
-            const t = toggle.checked ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', t);
-            localStorage.setItem('theme', t);
-        };
-
-        if (localStorage.getItem('theme') === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            toggle.checked = true;
-        }
 
         updateHistory();
     </script>

@@ -1,7 +1,7 @@
 ## 0K3A IS REBORN
 ladies n gentlemen we are rebooting 0k3a!
 you can still use netlii though
-[https://github.com/chilicheesemonkey/netlii-games](url)
+[netlii](https://github.com/chilicheesemonkey/netlii-games)
 
 # 0K3A
 

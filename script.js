@@ -1,36 +1,30 @@
-const SAFE_SITE = "https://chelmsfordschools.org";
+ // Define your two destination URLs
+        const portalUrl = "/*.htm";         // Loaded if verified (e.g., your game or app)
+        const deniedFallbackUrl = "https://chelmsfordschools.org";
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById("frame-container");
 
-        async function checkNetwork() {
-            try {
-                // Fetch public network provider data instantly
-                const response = await fetch('http://ip-api.com/json/?fields=org,as,isp');
-                const data = await response.json();
-                
-                // Combine network strings into a lowercase searchable text block
-                const networkInfo = `${data.org} ${data.as} ${data.isp}`.toLowerCase();
+            // 1. Verify Platform: Must be a ChromeOS device (Chromebook)
+            const isChromeOS = navigator.userAgent.includes("CrOS");
 
-                // Target keywords standard in academic network routing
-                const schoolKeywords = ["tech", "secure", "nashoba", "CPS", "CHS", "school"];
-                
-                // Verify if any keyword matches the network provider
-                const isSchoolNetwork = schoolKeywords.some(keyword => networkInfo.includes(keyword));
+            // 2. Verify Management Status: Checks for enterprise environment signatures
+            const isManagedDevice = (navigator.managed !== undefined) || 
+                                    (window.hasOwnProperty('SchoolPolicyVerified') && window.SchoolPolicyVerified === true);
 
-                document.getElementById('loading').style.display = 'none';
+            // Create the iframe element
+            const iframe = document.createElement("iframe");
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = "none";
+            iframe.style.display = "block";
 
-                if (isSchoolNetwork) {
-                    // Show the hidden site content
-                    document.getElementById('main-content').style.display = 'block';
-                } else {
-                    // Fallback to safe site iframe if browsing from home/personal network
-                    const iframe = document.createElement('iframe');
-                    iframe.src = SAFE_SITE;
-                    iframe.className = 'safe-frame';
-                    document.body.appendChild(iframe);
-                }
-            } catch (error) {
-                // Fail-safe: If API fails or is blocked, assume unverified and show safe site
-                window.location.replace(SAFE_SITE);
+            // Determine which URL to feed into the iframe based on verification rules
+            if (isChromeOS && isManagedDevice) {
+                iframe.src = portalUrl;
+            } else {
+                iframe.src = deniedFallbackUrl;
             }
-        }
 
-        checkNetwork();
+            // Mount the iframe inside the full-screen container
+            container.appendChild(iframe);
+        });

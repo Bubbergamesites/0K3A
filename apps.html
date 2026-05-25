@@ -307,7 +307,7 @@
     </script>
     <script>
          // Define your two destination URLs
-        const portalUrl = "apps.html";         // Loaded if verified (e.g., your game or app)
+        const portalUrl = window.location.pathname;
         const deniedFallbackUrl = "https://chelmsfordschools.org";
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.getElementById("frame-container");
@@ -336,7 +336,7 @@
             // Mount the iframe inside the full-screen container
             container.appendChild(iframe);
         });
-    </script>    
+    </script>     
 
   </body>
 </html>

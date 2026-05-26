@@ -1,8 +1,15 @@
 function getRandomGreeting() {
   var greetings = [
     "Bubber is the goat",
-    "OhMyGodASnake!",
+    "zip it, lock it, put it in your pocket",
+    "try Magical Mini, it's lemon fresh!",
+    "the solution to your problems",
     "New Look, Same great taste!",
+    "Honey, where are my pants?",
+    "it's glummy",
+    "liar liar pants on fire",
+    "im boopy box!",
+    "poodlepoop butt-biscuits",
     "jablicky asparagus timmypop",
     "How many sides does a circle have?",
     "You can read btw",

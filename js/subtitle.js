@@ -47,7 +47,6 @@ function getRandomGreeting() {
     "I SWEAR TO GOD I DID NOT LIGHT JOHNS HOUSE ON FIRE.",
     "Don't ask questions if you can't handle the answers!",
     "If you are using Microsoft Edge, you need some help.",
-    "Vengeance is hereby mine",
     "Shoutout to Schlopis!",
     "Shoutout to PRG!",
     "Low price, high scores.",
